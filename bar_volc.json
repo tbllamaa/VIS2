@@ -1,0 +1,52 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 670,
+  "height": 400,
+    "background":"#fafafa",
+    "data": {
+      "url": "volcano_data_2010-2018.csv"
+    },
+    "layer": [
+        {
+            "mark": {"type": "bar", "color": "#FFA500"},
+            "encoding": {
+              "y": {
+                "field": "Elevation",
+                "type": "quantitative",
+                "title": "Elevation"
+              },
+              "x": {
+                "field": "VEI",
+                "type": "quantitative",
+                "title": "VEI",
+                "scale": {"zero": true, "domainMin": 0},
+                "axis": {"format": ".0f"}
+              },
+              "tooltip": [
+                {"field": "Elevation", "type": "quantitative"},
+                {"field": "VEI", "type": "quantitative"}
+              ]
+            }
+        },
+        {
+            "mark": {"type":"line", "color":"transparent"},
+            "encoding":{
+              "y":{
+                "field":"Elevation",
+                "type":"quantitative"
+              },
+              "x":{
+                "field":"VEI",
+                "type":"quantitative"
+              }
+            },
+            "transform":[
+              {
+                "regression":"VEI",
+                "on":"Elevation"
+              }
+            ]
+        }
+    ]
+}
+

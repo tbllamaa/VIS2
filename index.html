@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>FIT3179 - Data Visualization 2</title>
+  <!-- Import Vega & Vega-Lite (does not have to be from CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+  <script src="vega1.js"></script>
+  <script src="vega2.js"></script>
+  <script src="vega3.js"></script>
+  <script src="vega4.js"></script>
+  <script src="vega5.js"></script>
+  <script src="vega6.js"></script>
+  <script src="vega7.js"></script>
+  <script src="vega8.js"></script>
+  <script src="vega9.js"></script>
+  <script src="vega10.js"></script>
+  <script src="vega11.js"></script>
+
+  <!-- Import pure.css -->
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+    integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Libre+Baskerville:wght@400;700&family=Roboto+Serif:opsz@8..144&display=swap" rel="stylesheet">
+
+  <!-- CSS file -->
+  <link rel="stylesheet" type="text/css" href="styles.css" media="all">
+
+  <style>
+    /* Adjust the margin-left value as needed to control spacing */
+    .parent-div {
+      margin-left: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Title -->
+  <div class="page">
+    <div class="pure-g">
+      <div class="block">
+        <div class="pure-u-1-1">
+          <h1 style="text-align: center;"><span style="color: #555555;"> Exploring the Forces of Nature ----------------------------------</span></h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="pure-g">
+      <div class="block">
+        <div class="pure-u-1-1">
+          <p>
+            Natural disasters, such as <span style="color: darkred; font-weight: bold;">Volcanic Explosions</span>,
+            <span style="color: darkslateblue; font-weight: bold;">Tsunamis</span>and
+            <span style="color: darkslategray; font-weight: bold;">Earthquakes</span>, have the power to reshape our world
+            in the blink of an eye. These awe-inspiring yet often destructive phenomena remind us of the immense forces at
+            play beneath the Earth's surface and within our planet's dynamic systems. In this visualization, we embark on a
+            journey to explore the impact of these natural disasters, their geographic distribution, and the historical
+            significance they hold
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- End  -->
+
+    <!-- Volcanoes -->
+    <div class="pure-g">
+      <div class="block">
+        <div class="pure-u-1-1">
+          <h2><span style="color: darkred;font-size: 40px;">--------------- Volcanoes ---------------</span></h2>
+        </div>
+      </div>
+      <div class="pure-u-1-1">
+        <p>This map details volcanic eruptions (2010-2018) with VEI and lava elevation, revealing global patterns.</p>
+        <style>
+          #map1 {
+            display: block;
+            margin: auto;
+          }
+        </style>
+        <div id="map1"></div>
+      </div>
+      <div class="pure-u-1-1">
+      </div>
+      <div class="pure-u-1-2 parent-div">
+        <p>
+          <span style="color: #ad760e;"><b>VEI (Volcanic Explosivity Index)</b></span> quantifies eruption power from 0
+          (non-explosive) to 8 (catastrophic) based on ejected material volume, aiding eruption classification and hazard
+          assessment.
+        </p>
+      </div>
+      <div class="pure-u-1-2 parent-div">
+        <p>
+          <span style="color: #ad760e;"><b>Elevation (in m)</b></span>, volcanic eruptions propel lava to varying heights
+          influenced by eruption factors like magma composition and gas presence, aiding eruption analysis.
+        </p>
+      </div>
+    </div>
+    <h3><span style="color: #340034;">Different Types of Volcanoes</span></h3>
+    <div class="pure-g">
+      <div class="block">
+        <div class="pure-u-1-2">
+
+          <div class="pure-u-1-2">
+            <div id="donut1"></div>
+          </div>
+        </div>
+      </div>
+      <div class="pure-u-1-2">
+        <div id="stacked1"></div>
+      </div>
+      <div class="pure-u-1-1">
+        <p>
+          Different Types of Volcanoes that have caused explosions around the world between 2010-2018 are
+          <b style="color:#8B0000">Caldera, </b>
+          <b style="color:#CD3333">Complex Volcano, </b>
+          <b style="color:#FF4500">Lava Dome, </b>
+          <b style="color:#964B00">Shield Volcano, </b>
+          <b style="color:#B8860B">Stratovolcano </b>and
+
+          <b style="color:#CD3333">Subglacial Volcano</b>.
+          Their distribution can be seen in the donut chart and Stacked bar chart above.
+        </p>
+      </div>
+    </div>
+
+
+    <!-- Additional content can be added here -->
+
+    <!-- Tsunamis Map -->
+    <div class="pure-g">
+      <div a class="block">
+        <div class="pure-u-1-1">
+          <h2><span style="color: darkslateblue;font-size: 40px;">--------------- Tsunami ---------------</span></h2>
+        </div>
+      </div>
+      <div class="pure-u-1-1">
+        <style>
+          #map2 {
+            display: block;
+            margin: auto;
+          }
+        </style>
+        <div id="map2"></div>
+      </div>
+      <div class="pure-u-1-1">
+      </div>
+      <div class="pure-u-1-2 parent-div">
+        <p>
+          <span style="color:#482777"><b>Maximum water height during a tsunami, or tsunami wave height</b></span>
+          measures the highest seawater point reached during a tsunami event, crucial for effective warning systems and
+          coastal safety planning
+        </p>
+      </div>
+      <div class="pure-u-1-2 parent-div">
+        <p><br>
+          <span style="color:#482777"><b>Earthquake magnitude,</b></span>, often measured on the Richter scale, directly
+          influences tsunami generation. Greater magnitudes result in more potent undersea disturbances and larger,
+          potentially devastating tsunamis
+        </p>
+      </div>
+    </div>
+    <!-- Earthquake Map -->
+    <div class="pure-g">
+      <div class="block">
+        <div class="pure-u-1-1">
+          <h2><span style="color: darkgreen;font-size: 30px;">--------------------- Earthquakes ---------------------</span>
+          </h2>
+        </div>
+      </div>
+      <div class="pure-u-1-1">
+        <style>
+          #map3 {
+            display: block;
+            margin: auto;
+          }
+        </style>
+
+        <div id="map3"></div>
+      </div>
+      <div class="pure-u-1-1">
+      </div>
+      <div class="pure-u-1-2 parent-div">
+        <p>
+          <span style="color:#006400"><b>The focal depth of an earthquake, known as hypocenter depth</b></span> indicates
+          where the quake originates within the Earth's crust.
+        </p>
+      </div>
+      <div class="pure-u-1-2 parent-div">
+        <p>
+          <span style="color:#006400"><b>Earthquake magnitude</b></span> is a measure of seismic energy released during a
+          quake. The Richter scale and moment magnitude scale quantify the earthquake's size and potential for damage.
+        </p>
+      </div>
+    </div>
+    <div class="pure-g">
+      <div class="block">
+        <div class="pure-u-1-1">
+          <h2><span style="color:  #555555">------------------------  Comparing all three  ------------------------</span>
+          </h2>
+          <div class="pure-g">
+
+            <div class="block">
+              <div class="pure-u-1-2">
+
+                <div class="pure-u-1-2">
+                  <div id="scatterplot1"></div>
+                </div>
+              </div>
+              <div class="pure-u-1-2">
+                <p>This scatter plot shows the number of volcanic eruptions  that occured globally between 2010-2018.</p>
+              </div>
+            </div>
+          </div>
+
+
+          
+        </div>
+
+      </div>
+    </div>
+    <div class="pure-g">
+        <div class="block">
+            <div class="pure-u-1-1"></div>
+            
+          
+    
+            <div class="pure-g">
+  
+              <div class="block">
+                <div class="pure-u-1-2">
+  
+                  <div class="pure-u-1-2">
+                    <div id="scatterplot2"></div>
+                  </div>
+                </div>
+                <div class="pure-u-1-2">
+                  <p>This scatter plot shows the number of Tsunami's  that occured globally between 2010-2018.</p>
+                </div>
+              </div>
+            </div>
+  
+  
+            
+          </div>
+  
+        </div>
+        <div class="pure-g">
+            <div class="block">
+              <div class="pure-u-1-1">
+                <div class="pure-g">
+      
+                  <div class="block">
+                    <div class="pure-u-1-2">
+      
+                      <div class="pure-u-1-2">
+                        <div id="scatterplot3"></div>
+                      </div>
+                    </div>
+                    <div class="pure-u-1-2">
+                      <p>This scatter plot shows the number of Earthquakes that occured globally between 2010-2018.</p>
+                    </div>
+                  </div>
+                </div>
+      
+      
+                
+              </div>
+      
+            </div>
+          </div>
+      </div>
+    
+
+      
+
+  </div>
+  
+
+
+  <!-- Include your JavaScript and other scripts here -->
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 670,
+  "height": 400,
+
+  "params": [
+    {
+      "name": "center_to",
+      "value": {"name": "Center"},
+      "bind": {
+          "input": "select",
+          "options": [
+              {"name": "Center", "value": [0, 0]},
+              {"name": "North America", "value": [-95, 35]},
+              {"name": "South America", "value": [-60, -15]},
+              {"name": "Europe", "value": [10, 50]},
+              {"name": "Africa", "value": [20, 0]},
+              {"name": "Asia", "value": [100, 30]},
+              {"name": "Oceania", "value": [140, -25]}
+          ],
+
+
+          "name": "Map Centre",
+          "labels": ["Center", "North America", "South America", "Europe", "Africa", "Asia", "Oceania"]
+      }
+  },
+    {
+        "name": "zoom_level",
+        "value": 100,
+        "bind": {
+            "input": "range",
+            "min": 100,
+            "max": 600,
+            "step": 100,
+            "name": "Zoom: "}
+        }
+
+            
+    
+  ],
+
+    "title": "Tsunamis between 2010-2018",
+    "projection": { "type": "equalEarth","center": {"expr": "center_to.value"},
+    "scale": {"expr":"zoom_level"}},
+       
+    "background": "#C1D2D2",
+    "layer": [
+      {
+        "data": {
+          "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/ne_110m_admin_0_countries.topojson",
+          "format": { "type": "topojson", "feature": "ne_110m_admin_0_countries" }
+        },
+        "mark": { "type": "geoshape", "fill": "#979e88", "stroke": "#555555" }
+      },
+      {
+        "data": {
+          "url": "tsunamis-2010-2018.csv"
+        },
+        "mark": { "type": "circle", "stroke": "#555555", "strokeWidth": 1 },
+        "encoding": {
+          "longitude": { "field": "Longitude", "type": "quantitative" },
+          "latitude": { "field": "Latitude", "type": "quantitative" },
+          "size": {
+            "field": "Earthquake Magnitude",
+            "type": "quantitative",
+            "title": "Earthquake Magnitude",
+            "scale": { "domain": [5, 9], "range": [100, 320] }
+          },
+          "color": {
+            "field": "Maximum Water Height (m)",
+            "type": "quantitative",
+            "title": "Maximum Water Height (m)",
+            "scale": { "range": ["#440154", "#482777", "#3E4989", "#31688E", "#26838F", "#1F9D95", "#35B778", "#6ECE58", "#B4DD53", "#FDE725"] }
+          },
+          "tooltip": [
+            { "field": "Maximum Water Height (m)", "type": "quantitative", "format": ",","title":"Maximum Water Height (m)" },
+            { "field": "Earthquake Magnitude", "type": "quantitative", "format": "," },
+            {
+                "field": "Location Name",
+                "type": "nominal"
+              },
+  
+            { "field": "Country", "type": "nominal" },
+  
+            
+            { "field": "Year", "type": "ordinal" }
+            
+            
+            
+          ]
+        }
+      }
+    ]
+  }
+  

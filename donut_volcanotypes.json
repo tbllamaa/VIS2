@@ -1,0 +1,28 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 200,
+    "height": 200,
+    "description": "A simple donut chart with data from a CSV file.",
+    "background":"#fafafa",
+    "data": {"url": "volcano_types.csv"},
+    "mark": {
+      "type": "arc",
+      "innerRadius": 50,
+      "stroke": "#fafafa"
+    },
+    "encoding": {
+      "theta": {"field": "Percentage", "type": "quantitative"},
+      "color": {
+        "field": "Volcano type",
+        "type": "nominal",
+        "scale": {
+          "range": ["#8B0000", "#CD3333", "#FF4500", "#964B00", "#B8860B"]
+        }
+      },
+      "tooltip": [
+        {"field": "Volcano type", "type": "nominal", "title": "Volcano Type"},
+        {"field": "Percentage", "type": "quantitative", "title": "Percentage","format":".2%"}
+      ]
+    }
+  }
+  

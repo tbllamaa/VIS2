@@ -1,0 +1,52 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 670,
+    "height": 400,
+    "background":"#fafafa",
+    "data": {
+      "url": "tsunamis-2010-2018.csv"
+    },
+    "layer": [
+      {
+        "mark": {"type": "bar", "color": "#440154"},
+        "encoding": {
+          "y": {
+            "field": "Maximum Water Height (m)",
+            "type": "quantitative",
+            "title": "Maximum Water Height (m)"
+          },
+          "x": {
+            "field": "Earthquake Magnitude",
+            "type": "quantitative",
+            "title": "Earthquake Magnitude",
+            "scale": {"zero": true, "domainMin": 0},
+                "axis": {"format": ".0f"}
+          },
+          "tooltip": [
+            {"field": "Maximum Water Height (m)", "type": "quantitative"},
+            {"field": "Earthquake Magnitude", "type": "quantitative"}
+          ]
+        }
+      },
+      {
+        "mark": {"type":"line", "color":"transparent"},
+        "encoding":{
+          "y":{
+            "field":"Maximum Water Height (m)",
+            "type":"quantitative"
+          },
+          "x":{
+            "field":"Earthquake Magnitude",
+            "type":"quantitative"
+          }
+        },
+        "transform":[
+          {
+            "regression":"Earthquake Magnitude",
+            "on":"Maximum Water Height (m)"
+          }
+        ]
+      }
+    ]
+  }
+  

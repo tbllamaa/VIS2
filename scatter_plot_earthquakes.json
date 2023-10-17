@@ -1,0 +1,55 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "background":"#fafafa",
+    
+    "data": {
+      "url": "earthquakes-2010-2018.csv"
+    },
+    
+      
+    "transform": [
+      {
+        "aggregate": [
+          {"op": "count", "as": "num_eruptions"}
+        ],
+        "groupby": ["Year"]
+      },
+      {
+        "joinaggregate": [
+          {"op": "max", "field": "num_eruptions", "as": "max_eruptions"},
+          {"op": "min", "field": "num_eruptions", "as": "min_eruptions"}
+        ]
+      },
+      {
+        "calculate": "(datum.num_earthquakes === datum.max_earthquakes ? 'Maximum Earthquakes' : datum.num_earthquakes === datum.min_earthquakes ? 'Minimum Earthquakes' : null)",
+        "as": "annotation"
+      }
+    ],
+
+
+    "layer": [
+      {
+        "mark": "circle",
+        "encoding": {
+          "x": {"field": "Year", "type": "ordinal", "title": "Year"},
+          "y": {"field": "num_eruptions", "type": "quantitative", "title": "Number of Earthquakes"},
+          "size": {"field": "num_eruptions", "type": "quantitative", "legend": null},
+          "color": {"value": "#006400"},
+          "tooltip": [
+            {"field": "Year", "type": "ordinal", "title": "Year"},
+            {"field": "num_eruptions", "type": "quantitative", "title": "Number of Earthquakes"}
+          ]
+        }
+      },
+      {
+        "mark": {"type": "text", "align": "left", "baseline": "middle", "dx": 5},
+        "encoding": {
+          "x": {"field": "Year", "type": "ordinal"},
+          "y": {"field": "num_eruptions", "type": "quantitative"},
+          "text": {"field": "annotation", "type": "nominal"},
+          "color": {"condition": {"test": "datum.annotation === \"Maximum Eruptions\"", "value": "#006400"}, "value": "transparent"}
+        }
+      }
+    ]
+  }
+  

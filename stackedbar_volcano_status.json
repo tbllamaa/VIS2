@@ -1,0 +1,37 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "background":"#fafafa",
+    
+    "width": 200,
+    "height": 200,
+    "data": {"url": "volcano_data_2010-2018.csv"},
+    "transform": [
+      {"aggregate": [{"op": "count", "as": "count"}], "groupby": ["Status", "Type"]},
+      {"joinaggregate": [{"op": "sum", "field": "count", "as": "total"}], "groupby": ["Status"]},
+      {"calculate": "datum.count / datum.total", "as": "percentage"}
+    ],
+    "mark": "bar",
+    "encoding": {
+      "y": {"field": "Status", "type": "ordinal","title":""},
+      "x": {"field": "percentage", "type": "quantitative", 
+            "axis": {"format": ".0%"}, 
+            "title": "% of Volcanoes of the given Status"},
+      "color": {
+        "field": "Type", 
+        "type": "nominal", 
+        "scale": {
+          "range": ["#8B0000", "#CD3333", "#FF4500", "#964B00", "#B8860B"]
+        },
+        "legend": null
+      },
+      "tooltip": [
+        {"field": "Status", "type": "ordinal", 
+            "title":"Status"},
+        {"field":"Type","type":"nominal",
+            "title":"Type of Volcano"},
+        {"field":"percentage","type":"quantitative",
+            "title":"Percentage","format":".2%"}
+      ]
+    }
+  }
+  

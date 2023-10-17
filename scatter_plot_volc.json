@@ -1,0 +1,54 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "background":"#fafafa",
+    "data": {
+      "url": "volcano_data_2010-2018.csv"
+    },
+    
+      
+    "transform": [
+      {
+        "aggregate": [
+          {"op": "count", "as": "num_eruptions"}
+        ],
+        "groupby": ["Year"]
+      },
+      {
+        "joinaggregate": [
+          {"op": "max", "field": "num_eruptions", "as": "max_eruptions"},
+          {"op": "min", "field": "num_eruptions", "as": "min_eruptions"}
+        ]
+      },
+      {
+        "calculate": "(datum.num_eruptions === datum.max_eruptions ? 'Maximum Eruptions' : datum.num_eruptions === datum.min_eruptions ? 'Minimum Eruptions' : null)",
+        "as": "annotation"
+      }
+    ],
+
+
+    "layer": [
+      {
+        "mark": "circle",
+        "encoding": {
+          "x": {"field": "Year", "type": "ordinal", "title": "Year"},
+          "y": {"field": "num_eruptions", "type": "quantitative", "title": "Number of Eruptions"},
+          "size": {"field": "num_eruptions", "type": "quantitative", "legend": null},
+          "color": {"value": "#FFA500"},
+          "tooltip": [
+            {"field": "Year", "type": "ordinal", "title": "Year"},
+            {"field": "num_eruptions", "type": "quantitative", "title": "Number of Eruptions"}
+          ]
+        }
+      },
+      {
+        "mark": {"type": "text", "align": "left", "baseline": "middle", "dx": 5},
+        "encoding": {
+          "x": {"field": "Year", "type": "ordinal"},
+          "y": {"field": "num_eruptions", "type": "quantitative"},
+          "text": {"field": "annotation", "type": "nominal"},
+          "color": {"condition": {"test": "datum.annotation === \"Maximum Eruptions\"", "value": "#8B0000"}, "value": "transparent"}
+        }
+      }
+    ]
+  }
+  
